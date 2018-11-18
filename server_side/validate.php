@@ -14,38 +14,40 @@ if (isset($_POST['submit'])) {
         
         $message = '<p class="error">All fields are required </p>';
     }
-    else if (strlen($fname) < 3 || strlen($fname) > 20) {
-        $message .= '<p class="error">First name must be between 3 and 20 characters</p>';
-    }
-    else if (strlen($lname) < 3 || strlen($lname) > 20){
-    
-        $message .= '<p class="error">Last name must be between 3 and 20 characters</p>';
-    }
-    else if(empty($pwd)) {
-        $message .= '<p class="error">Please enter your password</p>';
-    }
-    else if(empty($cpwd)) {
-    $message .= '<p class="error">Please enter your password again</p>';
-    }
-    else if (!is_numeric($number)) {
-        $message .= '<p class="error">Phone number should be numeric</p>';
-    }
-   else if (strlen($number) != 11) {
-    $message .= '<p class="error">Phone number should be 11 digits long</p>';
-   }
-   else if (empty($gender)){
-    $message .= '<p class="error">Please select a gender</p>';
-   }
-   else if (empty($country)){
-    $message .= '<p class="error">Please select a country</p>';
-   }
-   else {
-    $message = '<p class="success">All inputs are valid, thank you</p>';
-   }
+        else if (strlen($fname) < 3 || strlen($fname) > 20) {
+            $message .= '<p class="error">First name must be between 3 and 20 characters</p>';
+        }
+        else if (strlen($lname) < 3 || strlen($lname) > 20){
+            $message .= '<p class="error">Last name must be between 3 and 20 characters</p>';
+        }
+        else if(empty($pwd)) {
+            $message .= '<p class="error">Please enter your password</p>';
+        }
+        else if(empty($cpwd)) {
+            $message .= '<p class="error">Please enter your password again</p>';
+        }
+        else if($pwd != $cpwd){
+            $message .= '<p class="error">Passsword mismatch</p>';  
+        }
+        else if (!is_numeric($number)) {
+            $message .= '<p class="error">Phone number should be numeric</p>';
+        }
+        else if(strlen($number) != 11) {
+            $message .= '<p class="error">Phone number should be 11 digits long</p>';
+        }
+        else if(empty($gender)){
+            $message .= '<p class="error">Please select a gender</p>';
+        }
+        else if(empty($country)){
+            $message .= '<p class="error">Please select a country</p>';
+        }
+        else {
+            $message = '<p class="success">All inputs are valid, thank you</p>';
+        }
 
    
-   //header('Location:success.html');
-   function saveToDatabase($fname, $lname, $email, $pwd, $cpwd, $number, $gender, $country) {
+   
+    function saveToDatabase($fname, $lname, $email, $pwd, $cpwd, $number, $gender, $country) {
        $serverName = "localhost";
        $database = "signup_quiz3";
        $username = "root";
